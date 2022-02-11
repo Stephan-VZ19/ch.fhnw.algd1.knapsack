@@ -24,8 +24,18 @@ public final class Knapsack {
 		if (i < weight.length) {
 			// TODO with both, item i not included / included try recursively packing
 			// items i+1 and further
+			packItem(i);
+			pack(i+1);
+			unpackItem(i);
+
+
+
 		} else if (totWeight <= capacity && totValue > maxValue) {
 			// TODO new maximum value discovered, remember it
+			maxValue += value[i];
+
+
+
 			System.out
 					.println("new max value " + maxValue + " with weight " + totWeight);
 		}
