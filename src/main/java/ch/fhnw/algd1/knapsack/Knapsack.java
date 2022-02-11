@@ -24,17 +24,17 @@ public final class Knapsack {
 		if (i < weight.length) {
 			// TODO with both, item i not included / included try recursively packing
 			// items i+1 and further
-			packItem(i);
-			pack(i+1);
 			unpackItem(i);
+			pack(i+1);
+			packItem(i);
+
 
 
 
 		} else if (totWeight <= capacity && totValue > maxValue) {
 			// TODO new maximum value discovered, remember it
 			maxValue += value[i];
-
-
+			pack(i-1);
 
 			System.out
 					.println("new max value " + maxValue + " with weight " + totWeight);
@@ -45,13 +45,21 @@ public final class Knapsack {
 		// TODO set instance variables to represent knapsack with item i included
 		totWeight += weight[i];
 		totValue += value[i];
-		System.out.println("packing item " + i);
+		System.out.println("packing item " + i +" " + totWeight);
 	}
 
 	private static void unpackItem(int i) {
 		// TODO set instance variables to represent knapsack with item i excluded
+
+
 		totWeight -= weight[i];
+		if (totWeight < 0) {
+			totWeight += weight[i];
+		}
 		totValue -= value[i];
-		System.out.println("unpacking item " + i);
+		if (totValue < 0) {
+			totValue += value[i];
+		}
+		System.out.println("unpacking item " + i +" " + totWeight);
 	}
 }
