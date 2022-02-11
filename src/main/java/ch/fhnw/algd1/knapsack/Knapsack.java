@@ -33,11 +33,15 @@ public final class Knapsack {
 
 	private static void packItem(int i) {
 		// TODO set instance variables to represent knapsack with item i included
+		totWeight += weight[i];
+		totValue += value[i];
 		System.out.println("packing item " + i);
 	}
 
 	private static void unpackItem(int i) {
 		// TODO set instance variables to represent knapsack with item i excluded
+		totWeight -= weight[i];
+		totValue -= value[i];
 		System.out.println("unpacking item " + i);
 	}
 }
