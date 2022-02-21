@@ -3,7 +3,7 @@ package ch.fhnw.algd1.knapsack;
  * Created on Dec 12, 2013
  */
 /**
- * @author Wolfgang Weck
+ * @author Wolfgang Weck / edited
  */
 public final class Knapsack {
 	private static final int[] weight = { 7, 6, 5, 3 }, value = { 70, 54, 50, 24 };
@@ -24,17 +24,16 @@ public final class Knapsack {
 		if (i < weight.length) {
 			// TODO with both, item i not included / included try recursively packing
 			// items i+1 and further
-			unpackItem(i);
+
 			pack(i+1);
 			packItem(i);
-
-
+			pack(i+1);
+			unpackItem(i);
 
 
 		} else if (totWeight <= capacity && totValue > maxValue) {
 			// TODO new maximum value discovered, remember it
-			maxValue += value[i];
-			pack(i-1);
+			maxValue = totValue;
 
 			System.out
 					.println("new max value " + maxValue + " with weight " + totWeight);
@@ -51,15 +50,9 @@ public final class Knapsack {
 	private static void unpackItem(int i) {
 		// TODO set instance variables to represent knapsack with item i excluded
 
-
 		totWeight -= weight[i];
-		if (totWeight < 0) {
-			totWeight += weight[i];
-		}
 		totValue -= value[i];
-		if (totValue < 0) {
-			totValue += value[i];
-		}
+
 		System.out.println("unpacking item " + i +" " + totWeight);
 	}
 }
